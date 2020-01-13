@@ -96,14 +96,16 @@ class QuestionCollectionViewCell: UICollectionViewCell {
                        initialSpringVelocity: 0.4,
                        options: [.beginFromCurrentState,.allowUserInteraction],
                        animations: {
-                        self.setValue(finalVal: finalVal)
+                        self.selectedViewHeight.constant = CGFloat((finalVal))
                         self.layoutIfNeeded()
         }, completion: nil)
+        UIView.animate(withDuration: 0.1) {
+            self.setValue(finalVal: finalVal)
+        }
     }
     
     
     func setValue(finalVal :CGFloat){
-        self.selectedViewHeight.constant = CGFloat((finalVal))
         let percentAchive = self.getPercentageChange()
         let bottomFontColor = UIColor.white.toColor(UIColor.darkGray, percentage:CGFloat(percentAchive * 100))
         let topFontColor =  UIColor.darkGray.toColor(UIColor.white, percentage:CGFloat(percentAchive * 100))
